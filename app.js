@@ -1,8 +1,8 @@
 let playerSelection = "";
 let aiSelection = "";
-let winner = false;
 let playerScore = 0;
 let aiScore = 0;
+let keepPlaying = true;
 
 function checkValidSelection(selection) {
   return selection != "rock" && selection != "scissors" && selection != "paper";
@@ -39,7 +39,7 @@ function capitalizeFirstChar(str) {
 
 function playRound(playerSelection, aiSelection) {
   if (playerSelection === aiSelection) {
-    return `It's a Tie: ${capitalizeFirstChar(playerSelection)} can't beat ${capitalizeFirstChar(aiSelection)}`;
+    return `It's a Tie! ${capitalizeFirstChar(playerSelection)} can't beat ${capitalizeFirstChar(aiSelection)}`;
   } else if (
     (playerSelection === "rock" && aiSelection === "scissors") ||
     (playerSelection === "paper" && aiSelection === "rock") ||
@@ -51,4 +51,23 @@ function playRound(playerSelection, aiSelection) {
     aiScore++;
     return `You Lose! ${capitalizeFirstChar(aiSelection)} beats ${capitalizeFirstChar(playerSelection)}`;
   }
+}
+
+function game() {
+  for (let i = 0; i < 5; i++) {
+    askPlayerSelection();
+    generateAiSelection();
+    console.log(playRound(playerSelection, aiSelection));
+  }
+
+  if (playerScore === aiScore) {
+    console.log(`Game Result:\nIt's a Tie! ${playerScore} - ${aiScore}`);
+  } else if (playerScore > aiScore) {
+    console.log(`Game Result:\nYou Win! ${playerScore} - ${aiScore}`);
+  } else {
+    console.log(`Game Result:\nYou Lose! ${playerScore} - ${aiScore}`);
+  }
+
+  playerScore = 0;
+  aiScore = 0;
 }
