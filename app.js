@@ -54,7 +54,7 @@ function playRound(playerSelection, aiSelection) {
 }
 
 function game() {
-  for (let i = 0; i < 5; i++) {
+  while (playerScore < 5 && aiScore < 5) {
     askPlayerSelection();
     generateAiSelection();
     console.log(playRound(playerSelection, aiSelection));
