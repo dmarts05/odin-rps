@@ -32,3 +32,23 @@ function generateAiSelection() {
       aiSelection = "error";
   }
 }
+
+function capitalizeFirstChar(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+function playRound(playerSelection, aiSelection) {
+  if (playerSelection === aiSelection) {
+    return `It's a Tie: ${capitalizeFirstChar(playerSelection)} can't beat ${capitalizeFirstChar(aiSelection)}`;
+  } else if (
+    (playerSelection === "rock" && aiSelection === "scissors") ||
+    (playerSelection === "paper" && aiSelection === "rock") ||
+    (playerSelection === "scissors" && aiSelection === "paper")
+  ) {
+    playerScore++;
+    return `You Win! ${capitalizeFirstChar(playerSelection)} beats ${capitalizeFirstChar(aiSelection)}`;
+  } else {
+    aiScore++;
+    return `You Lose! ${capitalizeFirstChar(aiSelection)} beats ${capitalizeFirstChar(playerSelection)}`;
+  }
+}
