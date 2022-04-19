@@ -2,7 +2,6 @@ let playerSelection = "";
 let aiSelection = "";
 let playerScore = 0;
 let aiScore = 0;
-let keepPlaying = true;
 
 function checkValidSelection(selection) {
   return selection != "rock" && selection != "scissors" && selection != "paper";
