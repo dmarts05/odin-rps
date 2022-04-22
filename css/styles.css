@@ -27,13 +27,17 @@ body {
 	}
 }
 
+i {
+  transition: all 0.5s;
+}
+
 /* Main Container */
 .main-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 3em;
+  gap: 2.5em;
 }
 
 /* Header text */
@@ -43,7 +47,7 @@ h1 {
   letter-spacing: 0.2em;
 }
 
-/* Round text */
+/* Round and Game text */
 h2 {
   font-size: 3em;
 }
@@ -80,7 +84,44 @@ h2 {
   max-width: 8em;
 }
 
+.option {
+  cursor: pointer;
+  transition: all 0.25s;
+}
+
+.option:hover {
+  transform: scale(110%);
+}
+
 /* Round Result */
 .round-result i {
   font-size: 6em;
+}
+
+/* Game Result */
+.game-result h2, .game-result i {
+  display: none;
+  background: linear-gradient(-45deg, white, #48fd00);
+  -webkit-background-clip: text;
+  background-size: 400% 400%;
+  animation: gradient 2.5s ease infinite;
+  color: transparent;
+}
+
+/* Reload button */
+.btn-reload {
+  display: none;
+  background: transparent;
+  border: 2px solid white;
+  border-radius: 15px;
+  padding: 0.5em 1em;
+  font-weight: 700;
+  transition: all 0.25s;
+}
+
+.btn-reload:hover {
+  cursor: pointer;
+  transform: scale(110%);
+  background-color: white;
+  color: #3c78e7;
 }

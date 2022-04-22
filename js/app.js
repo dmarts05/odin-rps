@@ -1,72 +1,102 @@
-let playerSelection = "";
-let aiSelection = "";
-let playerScore = 0;
-let aiScore = 0;
-
-function checkValidSelection(selection) {
-  return selection != "rock" && selection != "scissors" && selection != "paper";
-}
-
-function askPlayerSelection() {
-  do {
-    playerSelection = prompt("Rock, Paper or Scissors? ");
-    if (playerSelection != null)
-      playerSelection = playerSelection.toLowerCase();
-  } while (checkValidSelection(playerSelection));
-}
-
 function generateAiSelection() {
   const randNum = Math.floor(Math.random() * 3);
   switch (randNum) {
     case 0:
-      aiSelection = "rock";
-      break;
+      return "rock";
     case 1:
-      aiSelection = "paper";
-      break;
+      return "paper";
     case 2:
-      aiSelection = "scissors";
-      break;
+      return "scissors";
     default:
-      aiSelection = "error";
+      return "error";
   }
 }
 
-function capitalizeFirstChar(str) {
-  return str.charAt(0).toUpperCase() + str.slice(1);
-}
+function playRound() {
+  const playerSelection = this.getAttribute("id");
+  const aiSelection = generateAiSelection();
+  resetRoundResultIcon();
 
-function playRound(playerSelection, aiSelection) {
   if (playerSelection === aiSelection) {
-    return `It's a Tie! ${capitalizeFirstChar(playerSelection)} can't beat ${capitalizeFirstChar(aiSelection)}`;
+    roundResultIcon.classList.add("fa-minus");
   } else if (
     (playerSelection === "rock" && aiSelection === "scissors") ||
     (playerSelection === "paper" && aiSelection === "rock") ||
     (playerSelection === "scissors" && aiSelection === "paper")
   ) {
+    roundResultIcon.classList.remove("fa-minus");
+    roundResultIcon.classList.add("fa-check");
     playerScore++;
-    return `You Win! ${capitalizeFirstChar(playerSelection)} beats ${capitalizeFirstChar(aiSelection)}`;
   } else {
+    roundResultIcon.classList.remove("fa-minus");
+    roundResultIcon.classList.add("fa-xmark");
     aiScore++;
-    return `You Lose! ${capitalizeFirstChar(aiSelection)} beats ${capitalizeFirstChar(playerSelection)}`;
+  }
+
+  rounds++;
+  updateRoundNumber();
+  updateScoreIcons();
+}
+
+function updateRoundNumber() {
+  roundNumber.textContent = `ROUND ${rounds}`;
+}
+
+function updateScoreIcons() {
+  playerScoreIcons.forEach((icon) => {
+    icon.classList.add("fa-circle-dot");
+    icon.classList.remove("fa-circle");
+  });
+
+  aiScoreIcons.forEach((icon) => {
+    icon.classList.add("fa-circle-dot");
+    icon.classList.remove("fa-circle");
+  });
+
+  for (let i = 0; i < playerScore; i++) {
+    playerScoreIcons[i].classList.remove("fa-circle-dot");
+    playerScoreIcons[i].classList.add("fa-circle");
+  }
+
+  for (let i = 0; i < aiScore; i++) {
+    aiScoreIcons[i].classList.remove("fa-circle-dot");
+    aiScoreIcons[i].classList.add("fa-circle");
+  }
+
+  if (playerScore >= 5 || aiScore >= 5) {
+    endGame();
   }
 }
 
-function game() {
-  while (playerScore < 5 && aiScore < 5) {
-    askPlayerSelection();
-    generateAiSelection();
-    console.log(playRound(playerSelection, aiSelection));
-  }
+function resetRoundResultIcon() {
+  roundResultIcon.classList.remove("fa-check");
+  roundResultIcon.classList.remove("fa-xmark");
+}
 
-  if (playerScore === aiScore) {
-    console.log(`Game Result:\nIt's a Tie! ${playerScore} - ${aiScore}`);
-  } else if (playerScore > aiScore) {
-    console.log(`Game Result:\nYou Win! ${playerScore} - ${aiScore}`);
+function endGame() {
+  options.forEach((option) => option.removeEventListener("click", playRound));
+  if (playerScore < aiScore) {
+    gameResult.textContent = "YOU LOST!";
+    gameResult.setAttribute(
+      "style",
+      "display: block; background: linear-gradient(-45deg, white, red); -webkit-background-clip: text; animation: gradient 2.5s ease infinite; background-size: 400% 400%"
+    );
   } else {
-    console.log(`Game Result:\nYou Lose! ${playerScore} - ${aiScore}`);
+    gameResult.style.display = "block";
   }
 
-  playerScore = 0;
-  aiScore = 0;
+  btnReload.style.display = "block";
 }
+
+let playerScore = 0;
+let aiScore = 0;
+let rounds = 1;
+const options = document.querySelectorAll(".option");
+const roundNumber = document.querySelector(".round");
+const roundResultIcon = document.querySelector(".round-result i");
+const playerScoreIcons = document.querySelectorAll(".player-score i");
+const aiScoreIcons = document.querySelectorAll(".ai-score i");
+const gameResult = document.querySelector(".game-result h2");
+const btnReload = document.querySelector(".btn-reload");
+
+options.forEach((option) => option.addEventListener("click", playRound));
