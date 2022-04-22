@@ -79,3 +79,8 @@ h2 {
 .options img {
   max-width: 8em;
 }
+
+/* Round Result */
+.round-result i {
+  font-size: 6em;
+}
