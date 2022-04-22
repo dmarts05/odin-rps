@@ -6,32 +6,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>RPS</title>
     <link rel="stylesheet" href="css/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/df2c787cba.js"
+      crossorigin="anonymous"
+    ></script>
     <script src="js/app.js" defer></script>
   </head>
-  <body>
+  <body class="main-container">
     <h1>RPS!</h1>
+    <h2 class="round">ROUND 1</h2>
     <div class="player-score">
-      <h2>YOUR SCORE</h2>
-      <div class="score"></div>
+      <h3>YOUR SCORE</h3>
+      <div class="score">
+        <i class="fa-solid fa-circle-dot"></i>
+        <i class="fa-solid fa-circle-dot"></i>
+        <i class="fa-solid fa-circle-dot"></i>
+        <i class="fa-solid fa-circle-dot"></i>
+        <i class="fa-solid fa-circle-dot"></i>
+      </div>
     </div>
     <div class="options">
       <!-- Rock -->
       <div class="option">
-        <img src="" alt="Rock" />
+        <img src="img/rock.png" alt="Rock" />
       </div>
       <!-- Paper -->
       <div class="option">
-        <img src="" alt="Paper" />
+        <img src="img/paper.png" alt="Paper" />
       </div>
       <!-- Scissors -->
       <div class="option">
-        <img src="" alt="Scissors" />
+        <img src="img/scissors.png" alt="Scissors" />
       </div>
-      <div class="ai-score">
-        <h2>YOUR SCORE</h2>
-        <div class="score"></div>
-      </div>
-      <div class="round-result"></div>
     </div>
+    <div class="ai-score">
+      <h3>AI SCORE</h3>
+      <div class="score">
+        <i class="fa-solid fa-circle-dot"></i>
+        <i class="fa-solid fa-circle-dot"></i>
+        <i class="fa-solid fa-circle-dot"></i>
+        <i class="fa-solid fa-circle-dot"></i>
+        <i class="fa-solid fa-circle-dot"></i>
+      </div>
+    </div>
+    <div class="round-result"></div>
   </body>
 </html>

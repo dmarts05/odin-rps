@@ -2,6 +2,9 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: 'Work Sans', sans-serif;
+  color: white;
+  letter-spacing: 0.1em;
 }
 
  /* Animated Gradient Background */
@@ -22,4 +25,57 @@ body {
 	100% {
 		background-position: 0% 50%;
 	}
+}
+
+/* Main Container */
+.main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 3em;
+}
+
+/* Header text */
+h1 {
+  font-size: 6em;
+  font-weight: 900;
+  letter-spacing: 0.2em;
+}
+
+/* Round text */
+h2 {
+  font-size: 3em;
+}
+
+/* Scores */
+.player-score, .ai-score {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.player-score h3, .ai-score h3{
+  font-size: 2em;
+}
+
+.score {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+}
+
+/* Options */
+.options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6em;
+}
+
+.options img {
+  max-width: 8em;
 }
